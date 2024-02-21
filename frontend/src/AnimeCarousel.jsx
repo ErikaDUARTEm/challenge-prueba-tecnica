@@ -4,30 +4,34 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const AnimeCarousel = () => {
-  const [animes, setAnimes] = useState(new Set());
+  const [animes, setAnimes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [scores, setScores] = useState([]);
   const [average, setAverage] = useState();
 
   const fetchNewAnimes = async () => {
-    try {
-      const response = await fetch('https://api.jikan.moe/v4/anime');
-      const data = await response.json();
-      console.log(data)
-      setAnimes((prevAnimes) => new Set([...prevAnimes, ...data.data]));
-    } catch (error) {
-      console.error('Error fetching new animes:', error);
-    }
-  };
+  try {
+    // Realizar la solicitud a la API
+    const response = await fetch('https://api.jikan.moe/v4/anime?page=5');
+    const data = await response.json();
+    
+    // Iterar sobre los datos y agregar las imágenes al estado una por una o en lotes pequeños
+    data.data.forEach((anime) => {
+      // Actualizar el estado con cada imagen
+      setAnimes((prevAnimes) => [...prevAnimes, anime]);
+    });
+  } catch (error) {
+    console.error('Error fetching new animes:', error);
+  }
+};
+
+  
 
   useEffect(() => {
     fetchNewAnimes();
   }, [searchTerm]);
 
-  useEffect(() => {
-    const newScores = Array.from(animes).map((item) => item.score);
-    setScores((prevScores) => [...prevScores, ...newScores]);
-  }, [animes]);
+
 
   useEffect(() => {
     if (scores.length > 0) {
@@ -49,7 +53,6 @@ const AnimeCarousel = () => {
 
   const handleArrowClick = (direction) => {
     if (direction === 'next') {
-      setAnimes(new Set()); // Reiniciar la lista de animes al hacer clic en la flecha "next"
       fetchNewAnimes();
     }
   };
@@ -67,7 +70,7 @@ const AnimeCarousel = () => {
     <div>
       <h2>API Data Carousel</h2>
       <Slider {...settings}>
-        {Array.from(animes).map((item) => (
+        {animes.map((item) => (
           <div key={item.mal_id}>
             <img src={item.images.jpg.image_url} alt={item.title} />
             <p>{item.score}</p>
