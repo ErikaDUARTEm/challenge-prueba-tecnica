@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { AnimeSlider } from './AnimeSlider';
 import { Loading } from './Loading';
 
-const AnimeCarousel = () => {
+
+const AnimeCarousel = ({ searchTerm }) => {
   const [animesData, setAnimesData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [ loading, setLoading] = useState(false);
   const [average, setAverage] = useState();
+  const [searchError, setSearchError] = useState(null);
  
- 
+
 
   const fetchNewAnimes = async () => {
     try {
@@ -18,11 +17,19 @@ const AnimeCarousel = () => {
       const response = await fetch('https://api.jikan.moe/v4/anime?page=5');
       const data = await response.json();
   
-  
+      console.log(data, data.data)
+      await new Promise(resolve => setTimeout(resolve, 3000));
       // Actualizar el estado con los nuevos animes
+      console.log(data)
+      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
       setAnimesData((prevAnimes) => [...prevAnimes, ...data.data]);
+       } else {
+        console.error('La respuesta de la API no tiene el formato esperado:', data);
+      }
+      setSearchError(null); // Limpiar cualquier error previo
     } catch (error) {
       console.error('Error fetching new animes:', error);
+      setSearchError(error);
     }finally {
       setLoading(false); // Establecer loading en false al finalizar la solicitud
     }
@@ -124,30 +131,35 @@ console.log(average)
     }
   };
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: !loading, // Muestra las flechas solo cuando loading es falso
-    afterChange: handleArrowClick,
-  };
   
+    // Filtrar los animes según el término de búsqueda
+  const filteredAnimes = animesData.filter((anime) => {
+    const titleLowerCase = anime.title.toLowerCase();
+    const searchTermLowerCase = searchTerm.toLowerCase();
+    return titleLowerCase.includes(searchTermLowerCase);
+  });
+
+  
+    
+
   return (
-    <div>
-      <h2>API Data Carousel</h2>
+    <>
+      
       {loading && <Loading/>} {/* Indicador de carga */}
-      <Slider {...settings}>
-        {animesData.map((item) => (
-          <div key={item.mal_id}>
-            <img src={item.images.jpg.image_url} alt={item.title} />
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
+      <AnimeSlider loading={loading} filteredAnimes={filteredAnimes} />
+      {/* <div className="slider-container">
+        <Slider {...settings}>
+          {filteredAnimes.map((anime) => (
+          <div key={anime.mal_id}>
+            <img src={anime.images?.jpg?.image_url} alt={anime.title} className='img-animes' />
+            <h3>{anime.title}</h3>
+            <p>{anime.description}</p>
           </div>
         ))}
       </Slider>
-    </div>
+      </div> */}
+      
+    </>
   );
 };
 
