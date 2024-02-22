@@ -25,6 +25,9 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+h3{
+  font-size: 12px;
+}
 .input-container{
   margin:20px 20px;
   width: 50%;
@@ -37,15 +40,30 @@ h1 {
   padding: 10px;
   font-size: 16px;
 }
+.slick-slider{
+  background: rgba(0, 0, 0, 0.663);
+} 
 .slider-container {
   max-width: 800px;
   margin: 0 auto; 
   padding: 10px;
 }
+
+.card{
+  display: flex;
+    align-items: center;
+    height: 100%;
+    color: white;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+
+}
 .img-animes{
   width: 100%;
   height: auto;
   margin: 10px;
+  
 }
 p {
   font-size: 14px; 
