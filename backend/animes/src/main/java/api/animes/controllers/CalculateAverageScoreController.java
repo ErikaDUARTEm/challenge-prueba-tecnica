@@ -17,33 +17,34 @@ import java.util.Map;
 public class CalculateAverageScoreController {
 
     @PostMapping("/calculateAverageScore")
-    public ResponseEntity<Map<String, Object>> calcularPuntajePromedio(@RequestBody Map<String, List<Double>> scoresPorTemporada) {
-        System.out.println("Scores recibidos: " + scoresPorTemporada);
+    public ResponseEntity<Map<String, Object>> calcularPuntajePromedio(@RequestBody Map<String, Object> requestBody) {
+        System.out.println("Scores recibidos: " + requestBody);
 
         try {
-            // Calcular el puntaje promedio por temporada
-            Map<String, Double> puntajesPromedioPorTemporada = new HashMap<>();
-            Map<String, String> clasificacionesPorTemporada = new HashMap<>();
+            Map<String, List<Double>> scoresPorTitulo = (Map<String, List<Double>>) requestBody.get("scoresPorTitulo");
+            // Calcular el puntaje promedio por título
+            Map<String, Double> puntajesPromedioPorTitulo = new HashMap<>();
+            Map<String, String> clasificacionesPorTitulo = new HashMap<>();
 
-            scoresPorTemporada.forEach((temporada, scores) -> {
+            scoresPorTitulo.forEach((titulo, scores) -> {
                 double sumaTotal = scores.stream().mapToDouble(Double::doubleValue).sum();
                 long totalEpisodios = scores.size();
-                double puntajePromedio = totalEpisodios > 0 ? sumaTotal / totalEpisodios : 0.0;
+                double puntajePromedio = totalEpisodios > 0 ? Math.round(sumaTotal / totalEpisodios) : 0.0;
 
-                // Imprimir los puntajes promedio por temporada
-                System.out.println("Puntaje Promedio para " + temporada + ": " + puntajePromedio);
+                // Imprimir los puntajes promedio por título
+                System.out.println("Puntaje Promedio para " + titulo + ": " + puntajePromedio);
 
-                // Clasificar la temporada según las reglas de negocio
+                // Clasificar según las reglas de negocio
                 String clasificacion = clasificarSegunPuntaje(puntajePromedio);
-                clasificacionesPorTemporada.put(temporada, clasificacion);
+                clasificacionesPorTitulo.put(titulo, clasificacion);
 
-                puntajesPromedioPorTemporada.put(temporada, puntajePromedio);
+                puntajesPromedioPorTitulo.put(titulo, puntajePromedio);
             });
 
             // Devolver una respuesta con puntajes promedio y clasificaciones
             Map<String, Object> response = new HashMap<>();
-            response.put("puntajesPromedio", puntajesPromedioPorTemporada);
-            response.put("clasificaciones", clasificacionesPorTemporada);
+            response.put("puntajesPromedio", puntajesPromedioPorTitulo);
+            response.put("clasificaciones", clasificacionesPorTitulo);
 
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -52,6 +53,7 @@ public class CalculateAverageScoreController {
                     .body(Collections.singletonMap("error", "Error en el servidor: " + e.getMessage()));
         }
     }
+
 
     private String clasificarSegunPuntaje(double puntuacion) {
         if (puntuacion >= 1 && puntuacion <= 4) {
