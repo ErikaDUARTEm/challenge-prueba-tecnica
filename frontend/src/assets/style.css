@@ -1,0 +1,86 @@
+/* Reset de estilos */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+}
+#root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center; */
+  
+}
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+.input-container{
+  margin:20px 20px;
+  width: 50%;
+  height: 20%;
+}
+.input-search{
+  width: 100%;
+  text-align: center;
+  border-radius: 30px;
+  padding: 10px;
+  font-size: 16px;
+}
+.slider-container {
+  max-width: 800px;
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 10px; /* Agrega margen interno para separación entre imágenes */
+}
+.img-animes{
+  width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+  height: auto;
+  margin: 10px;
+}
+p {
+  font-size: 14px; /* Ajusta el tamaño de la fuente del párrafo */
+  margin-top: 10px; /* Ajusta la separación superior del párrafo */
+  margin-bottom: 10px; /* Ajusta la separación inferior del párrafo */
+}
+.slick-arrow.slick-next, .slick-arrow.slick-prev{
+  background: red;
+}
+.slider-container{
+  max-width: 800px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
