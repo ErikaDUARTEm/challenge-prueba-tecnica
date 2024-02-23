@@ -68,13 +68,14 @@ useEffect(() => {
   
     const data = await response.json()
     setAverage(data)
+    setLoading(false)
   }
 
   fetchAverageScore()
   
 }, [animesData]);
 
-console.log('average de Carrusel ', average)
+
 // Filtro de los animes según búsqueda
  const getFilteredAnimes = (animes) => {
   return animes.filter((anime) => {
@@ -84,11 +85,12 @@ console.log('average de Carrusel ', average)
   });
 };
 const filteredAnimesForSlider = getFilteredAnimes(animesData);
+
   return (
     <>
-      
-      {loading && <Loading/>}
+      {loading ? <Loading/> :
       <AnimeSlider loading={loading} filteredAnimes={filteredAnimesForSlider} averageData={average}/>
+      }
     </>
   );
 };
