@@ -1,9 +1,7 @@
-
-
 export const  Input = ({onSearch}) => {
     
     const handleValue = (event) => {
-     const searchTerm = event.target.value;
+    const searchTerm = event.target.value;
       // Llama a la función de búsqueda proporcionada desde el padre
       onSearch(searchTerm);
     };

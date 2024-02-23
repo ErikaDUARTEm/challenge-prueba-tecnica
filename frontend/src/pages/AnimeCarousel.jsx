@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { AnimeSlider } from "./AnimeSlider";
-import { Loading } from "./Loading";
+import { AnimeSlider } from "../components/AnimeSlider";
+import { Loading } from "../components/Loading";
 
 /*Componente que hace las llamadas a la Api Gratuita, pasa datos al backend y hace llamada al enpoint
 que contiene las reglas de negocio*/

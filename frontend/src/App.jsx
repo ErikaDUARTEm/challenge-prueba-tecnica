@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import AnimeCarousel from './AnimeCarousel'
+import AnimeCarousel from './pages/AnimeCarousel'
 import './assets/style.css'
-import { Input } from './Input';
-import { Header } from './Header';
-import { Footer } from './Footer';
+import { Input } from './components/Input';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
