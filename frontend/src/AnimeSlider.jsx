@@ -23,7 +23,8 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
             mobileFirst: true,
             infinite: true,
             speed: 300,
-            slidesToShow: 1,
+            slidesToShow: 5,
+            slidesToScroll: 5,
             centerMode: false,
             variableWidth: true,
             focusOnSelect: true

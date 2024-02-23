@@ -126,6 +126,11 @@ button {
   height: 40px;
 }
 
+@media screen and (max-width:1125px) {
+  .copyright{
+    position: sticky;
+  }
+}
 @media screen and (max-width: 767px){
 
   header{
@@ -149,5 +154,14 @@ button {
   .input-search{
     width: 80%;
   }
-
+.img-animes{
+  width: auto;
+  height: 250px;
+}
+.slick-arrow.slick-next, .slick-arrow.slick-prev{
+  display: none;
+}
+.copyright{
+  position: sticky;
+}
 }
