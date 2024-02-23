@@ -2,6 +2,8 @@ import { useState } from 'react';
 import AnimeCarousel from './AnimeCarousel'
 import './assets/style.css'
 import { Input } from './Input';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,8 +14,12 @@ function App() {
 
   return (
     <>
-     <Input onSearch={handleSearch} />
-     <AnimeCarousel searchTerm={searchTerm}/>
+    <Header/>
+    <div className='container-content'>
+      <Input onSearch={handleSearch} />
+      <AnimeCarousel searchTerm={searchTerm}/>
+    </div>
+    <Footer/>
     </>
   )
 }

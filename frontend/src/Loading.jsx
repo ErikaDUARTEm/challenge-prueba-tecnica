@@ -2,8 +2,7 @@ export function Loading() {
    
     return(
     <>
-       <p>Cargando Animes...</p>
-       
+        <div className="loader"></div>
     </>
     )
 }

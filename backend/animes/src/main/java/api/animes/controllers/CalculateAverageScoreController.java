@@ -57,13 +57,13 @@ public class CalculateAverageScoreController {
 
     private String clasificarSegunPuntaje(double puntuacion) {
         if (puntuacion >= 1 && puntuacion <= 4) {
-            return "No lo recomiendo.";
+            return "❌ I do not recommend it.";
         } else if (puntuacion >= 5 && puntuacion <= 7) {
-            return "Puedes divertirte.";
+            return "😃 You may have fun.";
         } else if (puntuacion > 7) {
-            return "Genial, esto es uno de los mejores animes.";
+            return "⭐ Great, this is one of the best anime.";
         } else {
-            return "Puntuación no válida.";
+            return "\uD83D\uDE35 Puntuación no válida.";
         }
     }
 }
