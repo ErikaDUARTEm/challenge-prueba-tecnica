@@ -47,7 +47,12 @@ h3{
   font-size: 16px;
   align-self: center;
 }
-
+.container-loading{
+display: flex;
+width: 100%;
+justify-content: center;
+align-items: center;
+}
 .loader {
   width: 50px;
   aspect-ratio: 1;
