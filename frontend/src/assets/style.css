@@ -7,13 +7,20 @@ body {
   width: 100vw;
   height: 100vh;
   background: #00A5B5;
-
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 #root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
   background: #00A5B5;
+}
+main{
+  width: auto;
+  height: 100vh;
 }
 header{
   background: white;
@@ -119,6 +126,13 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+main {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
+}
 .copyright{
   display: flex;
   justify-content: center;
@@ -132,9 +146,13 @@ button {
 }
 
 @media screen and (max-width:1125px) {
-  .copyright{
-    position: sticky;
+  #root > div > div.slider-container > div > button.slick-arrow.slick-next{
+    display: flex;
   }
+  header{
+    height: 5vh;
+  }
+ 
 }
 @media screen and (max-width: 767px){
 
@@ -145,6 +163,13 @@ button {
     justify-content: left;
     align-items: center;
     padding: 20px;
+  }
+  .container-logo{
+    width: 30vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .titulo{
     font-size: 20px;
@@ -166,7 +191,14 @@ button {
 .slick-arrow.slick-next, .slick-arrow.slick-prev{
   display: none;
 }
-.copyright{
-  position: sticky;
+button{
+  display: none;
 }
+#root > main > div > div.slider-container > div > button.slick-arrow.slick-prev{
+  display: none;
+}
+#root > main > div > div.slider-container > div > button.slick-arrow.slick-next{
+  display: none;
+}
+
 }

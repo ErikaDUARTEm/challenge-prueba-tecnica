@@ -36,6 +36,7 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
           slidesToShow: 3,
           slidesToScroll: 3,
           initialSlide: 1,
+          arrows: true,
         },
       },
       {
@@ -43,6 +44,7 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: true,
         },
       },
     ],
