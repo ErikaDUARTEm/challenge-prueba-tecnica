@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { AnimeSlider } from "../components/AnimeSlider";
 import { Loading } from "../components/Loading";
@@ -37,12 +38,14 @@ const AnimeCarousel = ({ searchTerm }) => {
     } catch (error) {
       console.error("Error fetching new animes:", error);
       setSearchError(error);
+      searchError
     } finally {
       setLoading(false); // Establecer loading en false al finalizar la solicitud
     }
   };
   useEffect(() => {
     fetchNewAnimes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   // Lógica para enviar datos al backend

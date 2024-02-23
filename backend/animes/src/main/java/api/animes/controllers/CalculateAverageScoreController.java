@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,6 @@ public class CalculateAverageScoreController {
 
     @PostMapping("/calculateAverageScore")
     public ResponseEntity<Map<String, Object>> calcularPuntajePromedio(@RequestBody Map<String, Object> requestBody) {
-        System.out.println("Scores recibidos: " + requestBody);
 
         try {
             Map<String, List<Double>> scoresPorTitulo = (Map<String, List<Double>>) requestBody.get("scoresPorTitulo");
@@ -31,10 +29,7 @@ public class CalculateAverageScoreController {
                 long totalEpisodios = scores.size();
                 double puntajePromedio = totalEpisodios > 0 ? Math.round(sumaTotal / totalEpisodios) : 0.0;
 
-                // Imprimir los puntajes promedio por título
-                System.out.println("Puntaje Promedio para " + titulo + ": " + puntajePromedio);
-
-                // Clasificar según las reglas de negocio
+                // Clasificación según las reglas de negocio
                 String clasificacion = clasificarSegunPuntaje(puntajePromedio);
                 clasificacionesPorTitulo.put(titulo, clasificacion);
 
@@ -54,7 +49,7 @@ public class CalculateAverageScoreController {
         }
     }
 
-
+    //Reglas de negocio
     private String clasificarSegunPuntaje(double puntuacion) {
         if (puntuacion >= 1 && puntuacion <= 4) {
             return "❌ I do not recommend it.";
