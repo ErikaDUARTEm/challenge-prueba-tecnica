@@ -43,10 +43,14 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
     ],
   };
 
+  console.log('average de Slider ', averageData)
+
   return (
     <div className="slider-container">
-      <Slider {...settings}>
-        {filteredAnimes.map((anime) => (
+     <Slider {...settings}>
+      {filteredAnimes.map((anime) => {
+      
+        return (
           <div key={anime.mal_id} className="container-cards">
             <div className="card">
               <img
@@ -55,7 +59,7 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
                 className="img-animes"
               />
               <h3>{anime.title}</h3>
-              {averageData &&
+             {averageData &&
                 averageData.puntajesPromedio &&
                 averageData.clasificaciones &&
                 averageData.puntajesPromedio[anime.title] && (
@@ -63,8 +67,9 @@ export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
                 )}
             </div>
           </div>
-        ))}
-      </Slider>
+        );
+      })}
+    </Slider>
     </div>
   );
 };

@@ -39,44 +39,42 @@ const AnimeCarousel = ({ searchTerm }) => {
 
 // Lógica para enviar datos al backend
 useEffect(() => {
-  setLoading(true);
-  const scoresPorTitulo = {};
+  const fetchAverageScore = async () => {
+    setLoading(true);
+    const scoresPorTitulo = {};
+  
+    animesData.forEach(anime => {
+      const titulo = anime.title;
+  
+      if (!scoresPorTitulo[titulo]) {
+        scoresPorTitulo[titulo] = [];
+      }
+  
+      scoresPorTitulo[titulo].push(anime.score || 0);
+    });
+  
+    const scores = {
+      scoresPorTitulo: scoresPorTitulo,
+    };
+  
+    const response = await  fetch('http://localhost:8080/calculateAverageScore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      
+      body: JSON.stringify(scores),
+    })       
+  
+    const data = await response.json()
+    setAverage(data)
+  }
 
-  animesData.forEach(anime => {
-    const titulo = anime.title;
-
-    if (!scoresPorTitulo[titulo]) {
-      scoresPorTitulo[titulo] = [];
-    }
-
-    scoresPorTitulo[titulo].push(anime.score || 0);
-  });
-
-  const scores = {
-    scoresPorTitulo: scoresPorTitulo,
-  };
-
-    try {
-      fetch('http://localhost:8080/calculateAverageScore', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        
-        body: JSON.stringify(scores),
-      })
-        .then((response) => response.text())
-        .then((resultado) => {
-          setAverage(resultado);
-        });
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setLoading(false);
-    }
+  fetchAverageScore()
   
 }, [animesData]);
-console.log(average)
+
+console.log('average de Carrusel ', average)
 // Filtro de los animes según búsqueda
  const getFilteredAnimes = (animes) => {
   return animes.filter((anime) => {

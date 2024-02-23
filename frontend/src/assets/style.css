@@ -1,4 +1,3 @@
-/* Reset de estilos */
 * {
   margin: 0;
   padding: 0;
@@ -18,11 +17,6 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: center; */
   
 }
 
@@ -51,8 +45,8 @@ h3{
 } 
 .slider-container {
   max-width: 800px;
-  margin: 0 auto; /* Centra el contenedor */
-  padding: 10px; /* Agrega margen interno para separación entre imágenes */
+  margin: 0 auto; 
+  padding: 10px;
 }
 
 .card{
@@ -66,15 +60,15 @@ h3{
 
 }
 .img-animes{
-  width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+  width: 100%;
   height: auto;
   margin: 10px;
   
 }
 p {
-  font-size: 14px; /* Ajusta el tamaño de la fuente del párrafo */
-  margin-top: 10px; /* Ajusta la separación superior del párrafo */
-  margin-bottom: 10px; /* Ajusta la separación inferior del párrafo */
+  font-size: 14px; 
+  margin-top: 10px; 
+  margin-bottom: 10px;
 }
 .slick-arrow.slick-next, .slick-arrow.slick-prev{
   background: red;
