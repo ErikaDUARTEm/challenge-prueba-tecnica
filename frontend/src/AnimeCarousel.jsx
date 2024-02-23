@@ -57,7 +57,7 @@ useEffect(() => {
       scoresPorTitulo: scoresPorTitulo,
     };
   
-    const response = await  fetch('http://localhost:8080/calculateAverageScore', {
+    const response = await fetch('http://localhost:8080/calculateAverageScore', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
