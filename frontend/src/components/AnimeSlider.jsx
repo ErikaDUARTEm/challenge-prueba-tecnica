@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./assets/style.css";
+import "../assets/style.css";
 
 //Componente Slider con su configuración y estructura de renderizado
 export const AnimeSlider = ({ loading, filteredAnimes, averageData }) => {
